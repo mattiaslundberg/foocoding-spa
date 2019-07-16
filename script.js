@@ -1,9 +1,21 @@
+const highlight = document.getElementById("highlight");
 const addResponse = (item, parent) => {
     const li = document.createElement("li");
     parent.appendChild(li);
     const a = document.createElement("a");
     li.appendChild(a);
-    a.setAttribute("href", item.link);
+    a.setAttribute("href", "javascript:void(0);");
+    a.addEventListener("click", () => {
+        highlight.innerHTML = "";
+        const oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", () => {
+            const j = JSON.parse(oReq.responseText);
+            highlight.innerHTML = j.code;
+        });
+    
+        oReq.open("GET", item.url);
+        oReq.send();
+    });
     a.textContent = item.title;
 };
 
