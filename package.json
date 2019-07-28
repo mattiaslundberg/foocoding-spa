@@ -1,0 +1,19 @@
+{
+  "name": "foocoding-spa-client",
+  "version": "1.0.0",
+  "description": "TODO",
+  "author": "Mattias Lundberg",
+  "devDependencies": {
+    "eslint": "*",
+    "eslint-config-airbnb-base": "*",
+    "eslint-config-airbnb": "*",
+    "eslint-config-prettier": "*",
+    "eslint-plugin-import": "^*",
+    "eslint-plugin-jest": "*",
+    "eslint-plugin-jsx-a11y": "*",
+    "eslint-plugin-prettier": "*",
+    "eslint-plugin-react": "*",
+    "jest": "*",
+    "prettier": "*"
+  }
+}
