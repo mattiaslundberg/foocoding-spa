@@ -12,16 +12,20 @@ async function app() {
   const dogUrl = 'https://random.dog/woof.json'; // url
   const foxUrl = 'https://randomfox.ca/floof/'; // image
 
-  const cat = await fetch(catUrl);
-  const catJson = await cat.json();
-  addToDom(catJson.file);
-
-  try {
-    const dog = await fetch(dogUrl);
-    const dogJson = await dog.json();
-    addToDom(dogJson.url);
-  } catch (e) {
-    console.log('error dog');
-  }
+  Promise.all([fetch(catUrl), fetch(dogUrl)])
+    .then(([cat, dog]) => {
+      if (!cat.ok || !dog.ok) {
+        console.warn('Something failed in fetch');
+      }
+      cat.json().then(data => {
+        addToDom(data.file);
+      });
+      dog.json().then(dogData => {
+        addToDom(dogData.url);
+      });
+    })
+    .catch(error => {
+      console.warn(error);
+    });
 }
 app();
